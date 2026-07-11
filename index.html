@@ -300,6 +300,32 @@ section{
   margin-top:0.8rem;
 }
 
+.surprise-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:2.4rem;
+  padding:0.9rem 1.8rem;
+  background:var(--wine);
+  color:var(--paper);
+  font-family:'Caveat', cursive;
+  font-size:1.4rem;
+  text-decoration:none;
+  border-radius:999px;
+  box-shadow:0 10px 22px rgba(122,36,54,0.28);
+  animation:pulse 2.4s ease-in-out infinite;
+  transition:transform 0.2s ease;
+}
+
+.surprise-btn:hover{
+  transform:scale(1.05);
+}
+
+@keyframes pulse{
+  0%,100%{box-shadow:0 10px 22px rgba(122,36,54,0.28);}
+  50%{box-shadow:0 10px 30px rgba(122,36,54,0.5);}
+}
+
 </style>
 </head>
 <body>
@@ -336,7 +362,7 @@ section{
   </section>
 
   <section id="foto">
-    <p class="section-eyebrow">Dei piccoli nostri momenti</p>
+    <p class="section-eyebrow">i nostri momenti</p>
     <h2 class="section-title">Qualche foto di noi</h2>
     <div class="carousel-wrap">
       <button class="arrow arrow-left" id="arrowLeft" aria-label="Foto precedente">&#8592;</button>
@@ -346,7 +372,10 @@ section{
       <button class="arrow arrow-right" id="arrowRight" aria-label="Foto successiva">&#8594;</button>
     </div>
     <div class="dots" id="dots"></div>
-    <p class="final-phrase">Con te, ogni giorno è il più bello</p>
+    <p class="final-phrase">Buon 1 agosto, amore mio.<span class="small">Con te, ogni giorno è il più bello.</span></p>
+    <a class="surprise-btn" href="https://open.spotify.com/intl-it/track/3KkXRkHbMCARz0aVfEt68P?si=18c4f311afb4468b" target="_blank" rel="noopener">
+      🎁 Premi per una sorpresa
+    </a>
   </section>
 
 </div>
