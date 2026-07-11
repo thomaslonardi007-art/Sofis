@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Buon 1 Agosto</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Caveat:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root{
+  --paper:#F7EFE0;
+  --paper-deep:#EFE4CD;
+  --ink:#2B2320;
+  --wine:#7A2436;
+  --wine-light:#A8536A;
+  --gold:#C9A227;
+  --blush:#E8C9C2;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Lora', serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+.scroller{
+  height:100vh;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+}
+
+section{
+  min-height:100vh;
+  scroll-snap-align:start;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:6vh 8vw;
+  overflow:hidden;
+}
+
+/* ---------- SEZIONE 1 : HERO ---------- */
+
+#hero{
+  color:var(--paper);
+  text-align:center;
+  background:linear-gradient(150deg, #B98A80, #7A2436);
+}
+
+.hero-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  z-index:0;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(43,35,32,0.55), rgba(43,35,32,0.72));
+  z-index:1;
+}
+
+#hero > *:not(.hero-photo):not(.hero-overlay){
+  position:relative;
+  z-index:2;
+}
+
+.eyebrow{
+  font-family:'Caveat', cursive;
+  font-size:clamp(1.3rem, 5vw, 1.8rem);
+  color:var(--gold);
+  letter-spacing:0.03em;
+  margin-bottom:0.6rem;
+  opacity:0;
+  animation:fadeUp 1s ease forwards 0.2s;
+}
+
+.hero-title{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-style:italic;
+  font-size:clamp(1.9rem, 7vw, 3.1rem);
+  line-height:1.25;
+  max-width:22ch;
+  opacity:0;
+  animation:fadeUp 1s ease forwards 0.5s;
+}
+
+.hero-sub{
+  font-family:'Caveat', cursive;
+  font-size:clamp(1.6rem, 7vw, 2.3rem);
+  color:var(--blush);
+  margin-top:1.4rem;
+  opacity:0;
+  animation:fadeUp 1s ease forwards 0.9s;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.next-btn{
+  position:absolute;
+  bottom:6vh;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  background:none;
+  border:none;
+  color:var(--paper);
+  font-family:'Caveat', cursive;
+  font-size:1.3rem;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeUp 1s ease forwards 1.3s;
+}
+
+.next-btn .circle{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1.5px solid var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:bob 2.2s ease-in-out infinite;
+}
+
+@keyframes bob{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(6px);}
+}
+
+/* ---------- SEZIONE 2 : MOTIVI ---------- */
+
+#motivi{
+  background:var(--paper);
+  text-align:left;
+  align-items:stretch;
+  padding-top:10vh;
+  padding-bottom:12vh;
+}
+
+.section-eyebrow{
+  font-family:'Caveat', cursive;
+  font-size:1.5rem;
+  color:var(--wine);
+  text-align:center;
+}
+
+.section-title{
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(1.5rem, 6vw, 2.1rem);
+  text-align:center;
+  margin:0.3rem 0 3rem;
+  color:var(--ink);
+}
+
+.motivi-list{
+  list-style:none;
+  max-width:520px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+}
+
+.motivi-list li{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  font-size:1.05rem;
+  line-height:1.55;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+
+.motivi-list li.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.motivi-list li .mark{
+  color:var(--wine);
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-size:1.2rem;
+  flex-shrink:0;
+  margin-top:2px;
+}
+
+/* ---------- SEZIONE 3 : CAROSELLO ---------- */
+
+#foto{
+  background:var(--paper-deep);
+  padding-bottom:8vh;
+}
+
+.carousel-wrap{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.photo-frame{
+  width:100%;
+  max-width:320px;
+  aspect-ratio:4/5;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 28px rgba(43,35,32,0.16);
+  background:linear-gradient(135deg, var(--blush), var(--wine-light));
+}
+
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:1;
+  transition:opacity 0.25s ease;
+}
+
+.photo-frame img.fading{
+  opacity:0;
+}
+
+.arrow{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1.5px solid var(--wine);
+  background:var(--paper);
+  color:var(--wine);
+  font-size:1.1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.dots{
+  display:flex;
+  gap:8px;
+  margin:0.5rem 0 2.5rem;
+}
+
+.dots span{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--blush);
+  transition:background 0.3s ease, transform 0.3s ease;
+}
+
+.dots span.active{
+  background:var(--wine);
+  transform:scale(1.3);
+}
+
+.final-phrase{
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-size:clamp(1.2rem, 5vw, 1.6rem);
+  text-align:center;
+  max-width:26ch;
+  color:var(--wine);
+  line-height:1.5;
+}
+
+.final-phrase .small{
+  display:block;
+  font-family:'Caveat', cursive;
+  font-style:normal;
+  font-size:1.3rem;
+  color:var(--ink);
+  margin-top:0.8rem;
+}
+
+</style>
+</head>
+<body>
+
+<div class="scroller" id="scroller">
+
+  <section id="hero">
+    <img class="hero-photo" src="bacio.JPG" alt="">
+    <div class="hero-overlay"></div>
+    <p class="eyebrow">1 agosto</p>
+    <h1 class="hero-title">Per te, che rendi ogni mio giorno più bello</h1>
+    <p class="hero-sub">Buon 1 agosto Sofis ❤️‍🩹</p>
+    <button class="next-btn" onclick="document.getElementById('motivi').scrollIntoView()">
+      Avanti
+      <span class="circle">&#8595;</span>
+    </button>
+  </section>
+
+  <section id="motivi">
+    <p class="section-eyebrow">Le cose che amo di te</p>
+    <h2 class="section-title">10 Piccoli motivi, tra i tanti</h2>
+    <ul class="motivi-list" id="motiviList">
+      <li><span class="mark">&hearts;</span><span>I tuoi occhi</span></li>
+      <li><span class="mark">&hearts;</span><span>Il tuo sorriso</span></li>
+      <li><span class="mark">&hearts;</span><span>La tua forza</span></li>
+      <li><span class="mark">&hearts;</span><span>I nostri momenti insieme</span></li>
+      <li><span class="mark">&hearts;</span><span>Come metti il cuore in tutto</span></li>
+      <li><span class="mark">&hearts;</span><span>Come riesci a farmi sentire a casa, ovunque siamo</span></li>
+      <li><span class="mark">&hearts;</span><span>Il tuo abbraccio, che risolve praticamente tutto</span></li>
+      <li><span class="mark">&hearts;</span><span>Le tue risate</span></li>
+      <li><span class="mark">&hearts;</span><span>Come mi fai venire voglia di essere una versione migliore di me</span></li>
+      <li><span class="mark">&hearts;</span><span>Semplicemente, il fatto che ci sei</span></li>
+    </ul>
+  </section>
+
+  <section id="foto">
+    <p class="section-eyebrow">Dei piccoli nostri momenti</p>
+    <h2 class="section-title">Qualche foto di noi</h2>
+    <div class="carousel-wrap">
+      <button class="arrow arrow-left" id="arrowLeft" aria-label="Foto precedente">&#8592;</button>
+      <div class="photo-frame">
+        <img id="slideImg" src="abbraccio.JPG" alt="">
+      </div>
+      <button class="arrow arrow-right" id="arrowRight" aria-label="Foto successiva">&#8594;</button>
+    </div>
+    <div class="dots" id="dots"></div>
+    <p class="final-phrase">Con te, ogni giorno è il più bello</p>
+  </section>
+
+</div>
+
+<script>
+const items = document.querySelectorAll('.motivi-list li');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*0);
+      obs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.2});
+items.forEach((li, i)=>{
+  li.style.transitionDelay = (i*70) + 'ms';
+  obs.observe(li);
+});
+
+const photos = ['abbraccio.JPG', 'foto2.jpg', 'foto3.jpg', 'foto4.jpg'];
+const slideImg = document.getElementById('slideImg');
+const dotsWrap = document.getElementById('dots');
+let current = 0;
+
+photos.forEach((_, i)=>{
+  const d = document.createElement('span');
+  if(i===0) d.classList.add('active');
+  dotsWrap.appendChild(d);
+});
+const dotEls = dotsWrap.querySelectorAll('span');
+
+function showSlide(i){
+  current = (i + photos.length) % photos.length;
+  slideImg.classList.add('fading');
+  setTimeout(()=>{
+    slideImg.src = photos[current];
+    slideImg.classList.remove('fading');
+  }, 250);
+  dotEls.forEach((d, idx)=> d.classList.toggle('active', idx===current));
+}
+
+document.getElementById('arrowLeft').addEventListener('click', ()=> showSlide(current - 1));
+document.getElementById('arrowRight').addEventListener('click', ()=> showSlide(current + 1));
+</script>
+
+</body>
+</html>
